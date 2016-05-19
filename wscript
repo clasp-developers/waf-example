@@ -15,9 +15,11 @@ def configure(cfg):
     cfg.env.append_value('CXXFLAGS', ['-std=c++11', '-g'])
     cfg.check(features='cxx cxxprogram', lib=['pthread'], uselib_store='PTHREAD')
     cfg.env.append_value('LINKFLAGS_MYSDK', mysdk + '/mysdk.so')
-    cfg.load('python')
-    cfg.check_python_version((2,7,3))
-    cfg.check_python_headers()
+### The wscript shouldn't be checking what python version is available
+###  --- it's running in Python! The following is probably out of date
+#    cfg.load('python')
+#    cfg.check_python_version((2,7,3))
+#    cfg.check_python_headers()
     cfg.env.LINKFLAGS_PYEXT_MYSDK = cfg.env.LINKFLAGS_PYEXT
     cfg.env.append_value('LINKFLAGS_PYEXT_MYSDK', mysdk + '/mysdk.so')
 
